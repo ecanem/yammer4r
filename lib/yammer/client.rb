@@ -29,7 +29,11 @@ module Yammer
       ml = parsed_response['messages'].map do |m|
          mash(m)
       end
-        Yammer::MessageList.new(ml, older_available, self)
+
+      r1 = parsed_response['references'].map do |r|
+        mash(r)
+      end
+      Yammer::MessageList.new(ml, r1, older_available, self)
     end
 
     # POST or DELETE a message
